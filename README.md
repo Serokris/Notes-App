@@ -4,6 +4,11 @@ This is a simple application where you can add/edit and sort notes. When you cre
 specify its color and then sort all created notes by date/time/color. The purpose of creating this
 application is to get acquainted with Jetpack Compose technology.
 
+## __Architecture__
+
+* Architecture - Clean Architecture
+* Presentation layer pattern - MVVM
+
 ## __Screenshots__
 
 ![](screenshots/2021-11-23%2011.39.34.jpg)
