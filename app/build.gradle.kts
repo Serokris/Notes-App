@@ -8,6 +8,8 @@ plugins {
 val composeVersion: String by rootProject.extra
 val daggerVersion: String by rootProject.extra
 val roomVersion: String by rootProject.extra
+val jUnitVersion: String by rootProject.extra
+val androidJUnitExtension: String by rootProject.extra
 
 android {
     compileSdk = 31
@@ -75,8 +77,8 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.4.0")
 
     // Testing
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    testImplementation("junit:junit:$jUnitVersion")
+    androidTestImplementation("androidx.test.ext:junit:$androidJUnitExtension")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")

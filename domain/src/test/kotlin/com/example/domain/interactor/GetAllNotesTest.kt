@@ -1,25 +1,27 @@
-package com.example.notesapp.domain.interactor
+package com.example.domain.interactor
 
-import com.example.notesapp.data.repository.FakeNoteRepository
 import com.example.domain.common.NoteOrder
 import com.example.domain.common.OrderType
-import com.example.domain.interactor.NoteInteractor
 import com.example.domain.model.Note
-import kotlinx.coroutines.flow.first
+import com.example.domain.repository.NoteRepository
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito
+import org.mockito.kotlin.mock
 
 class GetAllNotesTest {
 
-    private val fakeNoteRepository = FakeNoteRepository()
+    private val fakeNoteRepository = mock<NoteRepository>()
     private val noteInteractor = NoteInteractor(fakeNoteRepository)
+    private val notesForSorting = mutableListOf<Note>()
 
     @Before
     fun setUp() {
-        val notesToInsert = mutableListOf<Note>()
         ('a'..'z').forEachIndexed { index, char ->
-            notesToInsert.add(
+            notesForSorting.add(
                 Note(
                     id = index,
                     title = char.toString(),
@@ -29,18 +31,15 @@ class GetAllNotesTest {
                 )
             )
         }
-        notesToInsert.shuffle()
-
-        runBlocking {
-            notesToInsert.forEach { note ->
-                noteInteractor.addNote(note)
-            }
-        }
+        notesForSorting.shuffle()
     }
 
     @Test
     fun `Order notes by title ascending, correct order`() = runBlocking {
-        val orderedNotes = noteInteractor.getAllNotes(NoteOrder.Title(OrderType.Ascending)).first()
+        Mockito.`when`(fakeNoteRepository.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
+
+        val orderedNotes =
+            noteInteractor.getAllNotes((NoteOrder.Title(OrderType.Ascending))).single()
 
         for (i in 0..orderedNotes.size - 2) {
             assert(orderedNotes[i].title < orderedNotes[i + 1].title)
@@ -49,7 +48,10 @@ class GetAllNotesTest {
 
     @Test
     fun `Order notes by title descending, correct order`() = runBlocking {
-        val orderedNotes = noteInteractor.getAllNotes(NoteOrder.Title(OrderType.Descending)).first()
+        Mockito.`when`(fakeNoteRepository.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
+
+        val orderedNotes =
+            noteInteractor.getAllNotes((NoteOrder.Title(OrderType.Descending))).single()
 
         for (i in 0..orderedNotes.size - 2) {
             assert(orderedNotes[i].title > orderedNotes[i + 1].title)
@@ -58,7 +60,10 @@ class GetAllNotesTest {
 
     @Test
     fun `Order notes by date ascending, correct order`() = runBlocking {
-        val orderedNotes = noteInteractor.getAllNotes(NoteOrder.Date(OrderType.Ascending)).first()
+        Mockito.`when`(fakeNoteRepository.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
+
+        val orderedNotes =
+            noteInteractor.getAllNotes((NoteOrder.Date(OrderType.Ascending))).single()
 
         for (i in 0..orderedNotes.size - 2) {
             assert(orderedNotes[i].timestamp < orderedNotes[i + 1].timestamp)
@@ -67,7 +72,10 @@ class GetAllNotesTest {
 
     @Test
     fun `Order notes by date descending, correct order`() = runBlocking {
-        val orderedNotes = noteInteractor.getAllNotes(NoteOrder.Date(OrderType.Descending)).first()
+        Mockito.`when`(fakeNoteRepository.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
+
+        val orderedNotes =
+            noteInteractor.getAllNotes((NoteOrder.Date(OrderType.Descending))).single()
 
         for (i in 0..orderedNotes.size - 2) {
             assert(orderedNotes[i].timestamp > orderedNotes[i + 1].timestamp)
@@ -76,7 +84,10 @@ class GetAllNotesTest {
 
     @Test
     fun `Order notes by color ascending, correct order`() = runBlocking {
-        val orderedNotes = noteInteractor.getAllNotes(NoteOrder.Color(OrderType.Ascending)).first()
+        Mockito.`when`(noteInteractor.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
+
+        val orderedNotes =
+            noteInteractor.getAllNotes((NoteOrder.Color(OrderType.Ascending))).single()
 
         for (i in 0..orderedNotes.size - 2) {
             assert(orderedNotes[i].color < orderedNotes[i + 1].color)
@@ -85,7 +96,10 @@ class GetAllNotesTest {
 
     @Test
     fun `Order notes by color descending, correct order`() = runBlocking {
-        val orderedNotes = noteInteractor.getAllNotes(NoteOrder.Color(OrderType.Descending)).first()
+        Mockito.`when`(noteInteractor.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
+
+        val orderedNotes =
+            noteInteractor.getAllNotes((NoteOrder.Color(OrderType.Descending))).single()
 
         for (i in 0..orderedNotes.size - 2) {
             assert(orderedNotes[i].color > orderedNotes[i + 1].color)
