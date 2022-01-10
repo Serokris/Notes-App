@@ -13,10 +13,11 @@ class GetNoteByIdTest {
     private val noteInteractor = NoteInteractor(fakeNoteRepository)
 
     @Test
-    fun `Get note by id, correct case`() = runBlocking {
+    fun `Get note by id, should be return note with id 0`() = runBlocking {
         Mockito.`when`(fakeNoteRepository.getNoteById(0))
             .thenReturn(Note(0, "Title", "Content", 0, 0))
-        assert(noteInteractor.getNoteById(0) != null)
+        val receivedNote = noteInteractor.getNoteById(0)
+        assert(receivedNote != null && receivedNote.id == 0)
     }
 
     @Test

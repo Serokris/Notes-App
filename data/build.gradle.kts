@@ -35,7 +35,7 @@ android {
 
 val roomVersion: String by rootProject.extra
 val jUnitVersion: String by rootProject.extra
-val androidJUnitExtension: String by rootProject.extra
+val androidJUnitExtensionVersion: String by rootProject.extra
 
 dependencies {
     implementation("androidx.core:core-ktx:1.7.0")
@@ -47,7 +47,7 @@ dependencies {
 
     // Testing
     testImplementation("junit:junit:$jUnitVersion")
-    androidTestImplementation("androidx.test.ext:junit:$androidJUnitExtension")
+    androidTestImplementation("androidx.test.ext:junit:$androidJUnitExtensionVersion")
 
     // Room components
     implementation("androidx.room:room-ktx:$roomVersion")

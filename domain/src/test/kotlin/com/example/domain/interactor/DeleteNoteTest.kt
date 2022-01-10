@@ -14,7 +14,7 @@ class DeleteNoteTest {
     private val deletingNote = Note(0, "Title", "Content", 0, 0)
 
     @Test
-    fun deletingNoteTest() = runBlocking {
+    fun `Should be called method 'delete' at the repository`() = runBlocking {
         noteInteractor.deleteNote(deletingNote)
         verify(fakeNoteRepository).delete(deletingNote)
     }

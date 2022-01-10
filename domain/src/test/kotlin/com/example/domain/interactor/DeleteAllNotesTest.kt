@@ -12,7 +12,7 @@ class DeleteAllNotesTest {
     private val noteInteractor = NoteInteractor(fakeNoteRepository)
 
     @Test
-    fun deleteAllNotes() = runBlocking {
+    fun `Should be called method 'deleteAll' at the repository`() = runBlocking {
         noteInteractor.deleteAllNotes()
         verify(fakeNoteRepository).deleteAll()
     }

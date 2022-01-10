@@ -5,7 +5,7 @@ buildscript {
         set("roomVersion", "2.4.0")
         set("daggerVersion", "2.39.1")
         set("jUnitVersion", "4.13.2")
-        set("androidJUnitExtension", "1.1.3")
+        set("androidJUnitExtensionVersion", "1.1.3")
     }
 
     val daggerVersion: String by extra

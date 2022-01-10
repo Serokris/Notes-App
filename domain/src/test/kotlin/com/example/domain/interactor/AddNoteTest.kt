@@ -14,7 +14,7 @@ class AddNoteTest {
     private val noteInteractor = NoteInteractor(fakeNoteRepository)
 
     @Test
-    fun `Insert note, correct case`() = runBlocking {
+    fun `Insert note, should be called method 'insert' at the repository`() = runBlocking {
         val note = Note(0, "Title", "Content", 0, 0)
         noteInteractor.addNote(note)
         verify(fakeNoteRepository).insert(note)

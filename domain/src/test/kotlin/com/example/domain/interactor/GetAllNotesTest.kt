@@ -35,7 +35,7 @@ class GetAllNotesTest {
     }
 
     @Test
-    fun `Order notes by title ascending, correct order`() = runBlocking {
+    fun `Should be return notes, ordered by title ascending`() = runBlocking {
         Mockito.`when`(fakeNoteRepository.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
 
         val orderedNotes =
@@ -47,7 +47,7 @@ class GetAllNotesTest {
     }
 
     @Test
-    fun `Order notes by title descending, correct order`() = runBlocking {
+    fun `Should be return notes, ordered by title descending`() = runBlocking {
         Mockito.`when`(fakeNoteRepository.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
 
         val orderedNotes =
@@ -59,7 +59,7 @@ class GetAllNotesTest {
     }
 
     @Test
-    fun `Order notes by date ascending, correct order`() = runBlocking {
+    fun `Should be return notes, ordered by date ascending`() = runBlocking {
         Mockito.`when`(fakeNoteRepository.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
 
         val orderedNotes =
@@ -71,7 +71,7 @@ class GetAllNotesTest {
     }
 
     @Test
-    fun `Order notes by date descending, correct order`() = runBlocking {
+    fun `Should be return notes, ordered by date descending`() = runBlocking {
         Mockito.`when`(fakeNoteRepository.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
 
         val orderedNotes =
@@ -83,7 +83,7 @@ class GetAllNotesTest {
     }
 
     @Test
-    fun `Order notes by color ascending, correct order`() = runBlocking {
+    fun `Should be return notes, ordered by color ascending`() = runBlocking {
         Mockito.`when`(noteInteractor.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
 
         val orderedNotes =
@@ -95,7 +95,7 @@ class GetAllNotesTest {
     }
 
     @Test
-    fun `Order notes by color descending, correct order`() = runBlocking {
+    fun `Should be return notes, ordered by color descending`() = runBlocking {
         Mockito.`when`(noteInteractor.getAllNotes()).thenReturn(flow { emit(notesForSorting) })
 
         val orderedNotes =
