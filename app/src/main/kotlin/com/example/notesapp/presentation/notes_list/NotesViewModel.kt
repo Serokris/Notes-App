@@ -48,6 +48,11 @@ class NotesViewModel @Inject constructor(
                     _recentlyDeletedNote = event.note
                 }
             }
+            NotesEvent.DeleteAllNotes -> {
+                viewModelScope.launch {
+                    interactor.deleteAllNotes()
+                }
+            }
             NotesEvent.RestoreNote -> {
                 viewModelScope.launch {
                     interactor.addNote(recentlyDeletedNote?.toNote() ?: return@launch)
