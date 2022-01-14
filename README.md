@@ -11,15 +11,13 @@ application is to get acquainted with Jetpack Compose technology.
 
 ## __Screenshots__
 
-![](screenshots/2021-11-23%2011.39.34.jpg)
-![](screenshots/2021-11-23%2011.39.40.jpg)
-![](screenshots/2021-11-23%2011.39.43.jpg)
-![](screenshots/2021-11-23%2011.39.47.jpg)
-![](screenshots/2021-11-23%2011.39.51.jpg)
-![](screenshots/2021-11-23%2011.39.59.jpg)
-![](screenshots/2021-11-23%2011.40.04.jpg)
-![](screenshots/2021-11-23%2011.40.08.jpg)
-![](screenshots/2021-11-23%2011.40.16.jpg)
+![](screenshots/EmptyNotesList.png)
+![](screenshots/Note1.png)
+![](screenshots/Note2.png)
+![](screenshots/Note3.png)
+![](screenshots/SortedNotesList.png)
+![](screenshots/MenuItem.png)
+![](screenshots/DeletingNotesList.png)
 
 ## Technologies
 
