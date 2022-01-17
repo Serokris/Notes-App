@@ -8,8 +8,11 @@ import com.example.domain.common.NoteOrder
 import com.example.domain.common.OrderType
 import com.example.domain.interactor.NoteInteractor
 import com.example.notesapp.mappers.toNote
+import com.example.notesapp.mappers.toNoteOrder
 import com.example.notesapp.mappers.toNoteWithColor
 import com.example.notesapp.models.NoteWithColors
+import com.example.notesapp.models.SavedNoteOrder
+import com.example.notesapp.utils.ModelPreferencesManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
@@ -31,7 +34,12 @@ class NotesViewModel @Inject constructor(
     private var getAllNotesJob: Job? = null
 
     init {
-        getAllNotes(NoteOrder.Date(OrderType.Descending))
+        val savedNotesOrder = ModelPreferencesManager.get<SavedNoteOrder>("SavedNotesOrder")
+        if (savedNotesOrder == null) {
+            getAllNotes(NoteOrder.Date(OrderType.Descending))
+        } else {
+            getAllNotes(savedNotesOrder.toNoteOrder())
+        }
     }
 
     fun onEvent(event: NotesEvent) {

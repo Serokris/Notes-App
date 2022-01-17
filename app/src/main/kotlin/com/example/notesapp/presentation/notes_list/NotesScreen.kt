@@ -22,9 +22,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.notesapp.mappers.toSavedNoteOrder
 import com.example.notesapp.presentation.notes_list.components.NoteItem
 import com.example.notesapp.presentation.notes_list.components.OrderSection
 import com.example.notesapp.presentation.theme.Beige
+import com.example.notesapp.utils.ModelPreferencesManager
 import com.example.notesapp.utils.Screen
 import com.example.notesapp.utils.noRippleClickable
 import kotlinx.coroutines.launch
@@ -175,6 +177,7 @@ fun NotesScreen(
                     noteOrder = screenState.noteOrder,
                     onOrderChange = { noteOrder ->
                         viewModel.onEvent(NotesEvent.Order(noteOrder))
+                        ModelPreferencesManager.put(noteOrder.toSavedNoteOrder(), "SavedNotesOrder")
                     }
                 )
             }
